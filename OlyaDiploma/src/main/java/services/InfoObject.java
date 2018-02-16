@@ -8,7 +8,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InfoObject {
+    private String data;
     private String temp;
     private String co2;
-    private String data;
+
+    public InfoObject(String temp, String co2) {
+        setTemp(temp);
+        setCo2(co2);
+    }
+
 }
+

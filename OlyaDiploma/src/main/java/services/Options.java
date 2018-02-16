@@ -11,15 +11,15 @@ public class Options {
 
         //option parameters
         Option help = new Option("h", "help", false, "Help");
-
         Option db = new Option("db", false, "Server name");
-
-        Option port = new Option("port", false, "COM Port name");
+        Option host = new Option("host", false, "DB host name");
+        Option comport = new Option("comport", false, "COM Port name");
 
         org.apache.commons.cli.Options options = new org.apache.commons.cli.Options();
         options.addOption(help);
         options.addOption(db);
-        options.addOption(port);
+        options.addOption(host);
+        options.addOption(comport);
 
         return options;
     }
