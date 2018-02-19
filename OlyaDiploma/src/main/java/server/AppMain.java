@@ -16,7 +16,7 @@ import static services.Help.printHelpOptions;
 public class AppMain {
     ServerObject serverObject = new ServerObject("smarthome","localhost","olha", "123", "COM-1", "indicators");
 
-    public void main(String[] args) throws SQLException{
+    public void main(String[] args) throws SQLException, InterruptedException{
 
         Options options = services.Options.options();
 
