@@ -14,7 +14,7 @@ import static services.Help.printHelpOptions;
  */
 @Log
 public class AppMain {
-    ServerObject serverObject = new ServerObject("smarthome","localhost","olha", "123", "COM-1", "indicators");
+    ServerObject serverObject = new ServerObject("smarthome","localhost","olha", "123", "/dev/ttyUSB0", "indicators");
 
     public void main(String[] args) throws SQLException, InterruptedException{
 
