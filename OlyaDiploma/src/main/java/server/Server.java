@@ -1,9 +1,7 @@
-package server;
+package services;
 
 import arduino.Arduino;
 import lombok.extern.java.Log;
-import services.InfoObject;
-import services.ServerObject;
 
 import java.sql.SQLException;
 

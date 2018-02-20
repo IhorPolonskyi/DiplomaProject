@@ -7,6 +7,7 @@ import org.apache.commons.cli.Options;
 
 import java.sql.SQLException;
 
+import static services.Server.scanPort;
 import static services.Help.printHelpOptions;
 
 /**
@@ -33,7 +34,7 @@ public class AppMain {
                 serverObject.setDbName(commandLine.getOptionValue("host"));
             if (commandLine.hasOption("comport"))
                 serverObject.setComPort(commandLine.getOptionValue("comport"));
-            Server.scanPort(serverObject);
+            scanPort(serverObject);
         } catch (ParseException e) {
             //catch exception, show help
             log.info("Something went wrong, see help to use program right");
