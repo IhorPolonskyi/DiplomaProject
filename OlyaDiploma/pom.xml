@@ -62,22 +62,13 @@
             <plugins>
 
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.2.1</version>
-                    <configuration>
-                        <mainClass>server.AppMain</mainClass>
-                    </configuration>
-                </plugin>
-
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <configuration>
                         <archive>
                             <manifest>
                                 <addClasspath>true</addClasspath>
-                                <mainClass>server.AppMain</mainClass>
+                                <mainClass>project.AppMain</mainClass>
                             </manifest>
                         </archive>
                     </configuration>

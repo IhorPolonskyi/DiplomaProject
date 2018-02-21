@@ -1,4 +1,4 @@
-package server;
+package project;
 
 import lombok.extern.java.Log;
 import services.InfoObject;
@@ -51,7 +51,8 @@ public class DataBase {
                     "(" +
                     "'" + infoObject.getData() + "'" + ", " +
                     "'" + infoObject.getTemp() + "'" + ", " +
-                    "'" + infoObject.getCo2() + "'"
+                    "'" + infoObject.getCo2() + "'"+ ", " +
+                    "'" + infoObject.getHum() + "'"
                     + ")");
             log.info("Data was written to db");
         } catch (SQLException e) {

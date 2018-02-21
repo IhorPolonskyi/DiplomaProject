@@ -1,4 +1,4 @@
-package server;
+package project;
 
 import lombok.extern.java.Log;
 import services.*;
@@ -7,7 +7,7 @@ import org.apache.commons.cli.Options;
 
 import java.sql.SQLException;
 
-import static services.Server.scanPort;
+import static project.Server.scanPort;
 import static services.Help.printHelpOptions;
 
 /**
@@ -15,9 +15,9 @@ import static services.Help.printHelpOptions;
  */
 @Log
 public class AppMain {
-    ServerObject serverObject = new ServerObject("smarthome","localhost","olha", "123", "/dev/ttyUSB0", "indicators");
+    static ServerObject serverObject = new ServerObject("smarthome","localhost","olha", "123", "/dev/ttyUSB0", "indicators");
 
-    public void main(String[] args) throws SQLException, InterruptedException{
+    public static void main(String[] args){
 
         Options options = services.Options.options();
 
@@ -33,12 +33,18 @@ public class AppMain {
             if (commandLine.hasOption("host"))
                 serverObject.setDbName(commandLine.getOptionValue("host"));
             if (commandLine.hasOption("comport"))
+
                 serverObject.setComPort(commandLine.getOptionValue("comport"));
+
             scanPort(serverObject);
         } catch (ParseException e) {
             //catch exception, show help
             log.info("Something went wrong, see help to use program right");
             printHelpOptions(options, 200, "Options", "-- HELP --", 3, 5, true, System.out);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
     }
