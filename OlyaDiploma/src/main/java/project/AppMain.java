@@ -33,7 +33,6 @@ public class AppMain {
             if (commandLine.hasOption("host"))
                 serverObject.setDbName(commandLine.getOptionValue("host"));
             if (commandLine.hasOption("comport"))
-
                 serverObject.setComPort(commandLine.getOptionValue("comport"));
 
             scanPort(serverObject);
