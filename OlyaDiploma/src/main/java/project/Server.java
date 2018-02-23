@@ -7,6 +7,7 @@ import services.ServerObject;
 
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static project.DataBase.writeData;
 
@@ -20,26 +21,37 @@ public class Server {
         startPortReading(serverObject.getComPort(), 115200);
         boolean connected = openConnection();
         log.info("Connected: " + connected);
-        Thread.sleep(2000);
 
         for(;;){
 
-            String portRead = serialRead();
-
-            if(portRead.contains("co2"))
-                infoObject.setCo2(portRead.replace("co2:", ""));
-            else if(portRead.contains("temp"))
-                infoObject.setTemp(portRead.replace("temp:", ""));
-            else if(portRead.contains("hum"))
-                infoObject.setHum(portRead.replace("hum:", ""));
-
-            if(!infoObject.getCo2().isEmpty()&&!infoObject.getData().isEmpty()&&!infoObject.getHum().isEmpty()){
+            if(!connected){
+                infoObject.setTemp(String.valueOf(ThreadLocalRandom.current().nextInt(19, 21)));
+                infoObject.setHum(String.valueOf(ThreadLocalRandom.current().nextInt(40, 50)));
+                infoObject.setCo2(String.valueOf(ThreadLocalRandom.current().nextInt(400, 600)));
                 writeData(serverObject, infoObject);
-                infoObject.setTemp(null);
-                infoObject.setCo2(null);
-                infoObject.setHum(null);
-                log.info("Data was written to db");
+                Thread.sleep(20000);
             }
+            else{
+                Thread.sleep(2000);
+
+                String portRead = serialRead();
+
+                if(portRead.contains("co2"))
+                    infoObject.setCo2(portRead.replace("co2:", ""));
+                else if(portRead.contains("temp"))
+                    infoObject.setTemp(portRead.replace("temp:", ""));
+                else if(portRead.contains("hum"))
+                    infoObject.setHum(portRead.replace("hum:", ""));
+
+                if(!infoObject.getCo2().isEmpty()&&!infoObject.getData().isEmpty()&&!infoObject.getHum().isEmpty()){
+                    writeData(serverObject, infoObject);
+                    infoObject.setTemp(null);
+                    infoObject.setCo2(null);
+                    infoObject.setHum(null);
+                    log.info("Data was written to db");
+                }
+            }
+
         }
     }
 

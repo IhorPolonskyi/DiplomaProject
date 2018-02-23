@@ -37,7 +37,7 @@ public class DataBase {
 
     public static void writeData(ServerObject object, InfoObject infoObject) throws SQLException {
 
-        DateFormat formatDate = new SimpleDateFormat("yyyy-MMMM-d HH:mm:ss", Locale.ENGLISH);
+        DateFormat formatDate = new SimpleDateFormat("yyyy-MM-d HH:mm:ss", Locale.ENGLISH);
         Date currentTime = Calendar.getInstance().getTime();
 
         String url = "jdbc:mysql://" + object.getHost() + ":3306/" + object.getDbName();
